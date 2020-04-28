@@ -15,7 +15,7 @@ body {
 
 /* Style the header */
 header {
-  background-color: #17D01A;
+  background-color: #666;
   padding: 30px;
   text-align: center;
   font-size: 35px;
@@ -54,7 +54,7 @@ section:after {
 
 /* Style the footer */
 footer {
-  background-color: #17D01A;
+  background-color: #777;
   padding: 10px;
   text-align: center;
   color: white;
@@ -70,33 +70,32 @@ footer {
 </style>
 </head>
 <body>
-<body>
-	<h2>로그인</h2>
-	<header>
-		<p style="font-size:48px">
-&#128159; &#127859; &#127856; &#127867;
-</p>
-		<h2>G마켓</h2>
-	</header>
 
-	<section>
-		<nav>
+<header>
+  <h2>사용자 가입</h2>
+</header>
+
+<section>
+  <nav>
     <ul>
-      <li><a id="join_a" >관리자 등록</a></li>
-      <li><a id="login_a">관리자접속</a></li>
-      <li><a id="signup_a" >사용자 가입</a></li>
-      <li><a id="signin_a">사용자 로그인</a></li>
+      <li><a id="home_a">홈으로</a></li>
     </ul>
   </nav>
   
   <article>
    <form action="#">
-   	<label>ID </label> <br>
-   	<input id="userid" type="text"> <br>
+   	<label>NAME </label> <br>
+   	<input id="name" type="text"/> <br>
+   	<label>ID</label><br>
+   	<input id="userid" type="text"/><input id="idsearch" type="button" value="중복확인" /> <br>
    	<label>PASSWORD</label><br>
-   	<input id="passwd" type="text"><br>
-   	<input id="login-button" type="button" value="로그인">
-   	<input id="cancel-button" type="button" value="취소">
+   	<input id="passwd" type="text"/><br>
+   	<label>SSN</label><br>
+   	<input id="ssn" type="text"><br>
+   	<label>ADRESS</label><br>
+   	<input id="addr" type="text"><br><br>
+   	<input id="join_button" type="button" value="사용자 가입">
+   	<input id="cancel_button" type="button" value="가입 취소">
    	
    </form>
   </article>
@@ -105,58 +104,44 @@ footer {
 <footer>
   <p>Footer</p>
 </footer>
-<script type="text/javascript">
-$('#join_a')
-	.css('cursor','pointer')
-	.click(e=>{
-		e.preventDefault()
-		location.href = "member/join.html"
-})
-$('#login_a')
-	.css('cursor','pointer')
-	.click(e=>{
-		e.preventDefault()
-		location.href = "index.html"
-})
-$('#signup_a')
+<script>
+$('#home_a')
 	.css('cursor','pointer')
 	.click(e => {
 	e.preventDefault()
-	location.href = "user/signup.html"
+	location.href = "../index.html"
 })
-$('#signin_a')
-	.css('cursor','pointer')
-	.click(e => {
-	e.preventDefault()
-	location.href = "user/signin.html"
-})
-$('#login-button').click(e =>{
+$('#join_button')
+	.click(e=> {
 	e.preventDefault()
 	$.ajax({
-		url: '/member/login',
+		url: '/user/join',
 		type: 'post',
 		data: JSON.stringify(
-				{userid: $('#userid').val(),
-				 passwd: $('#passwd').val()}),
+				{name:$('#name').val(),
+				userid: $('#userid').val(),
+				passwd: $('#passwd').val(),
+				ssn: $('#ssn').val(),
+				addr: $('#addr').val()}),
 		dataType: 'json',
 		contentType: 'application/json',
-		success : d => {
+		success: d =>{
 			if(d === 'SUCCESS'){
-				location.href = "/member/list.html"
-				/*location.href = "lotto/buy.html"   나중에 할것*/
+				location.href = 'signin.html'
 			}else{
-				alert('다시 로그인 해주세요')
-				location.href = "index.html"
+				location.href = 'signup.html'
 			}
+				
 		},
-		error: (request,status,error)=>{
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+		error: (r, x, e)=>{
+			alert(r.status)
 		}
+		
 	})
-})
-$('#cancel-button').click(function(){
 	
 })
+
+
 </script>
 </body>
 </html>
