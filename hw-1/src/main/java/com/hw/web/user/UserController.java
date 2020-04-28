@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hw.web.util.Messenger;
 
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -61,4 +60,5 @@ public class UserController {
 	}
 	
 }
+
 
