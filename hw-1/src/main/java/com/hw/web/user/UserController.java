@@ -24,7 +24,7 @@ public class UserController {
 	
 	@PostMapping("")
 	public Messenger post(@RequestBody User user) {
-		userService.index();
+		userService.index(user);
 		return Messenger.SUCCESS;
 	}
 	@GetMapping("")

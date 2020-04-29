@@ -23,6 +23,7 @@ public class AdminController {
 
 	@PostMapping("")
 	public Messenger post(@RequestBody Admin admin) {
+	
 		adminService.register(admin);
 		return Messenger.SUCCESS;
 	}

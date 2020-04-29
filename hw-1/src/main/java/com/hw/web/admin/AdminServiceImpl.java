@@ -6,93 +6,79 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.Buffer;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.NumberUtils;
 
 import com.hw.web.util.Data;
 
+import javafx.scene.input.DataFormat;
+
+import java.util.Date;
 @Service
 public class AdminServiceImpl implements AdminService{
+ @Autowired AdminDao adminDao;
+ 
+ @Override
+ public void register(Admin admin) {
+	/*employNumber,name,passwd,position,profile,email,phoneNumber,registerDate*/
+	 System.out.println(admin);
+	 admin.setEmployNumber(createEemployNumber());
+	 admin.setPasswd("1");
+	 admin.setRegisterDate(createCurrentDate());
+	 adminDao.insert(admin);
+ }
+	
+	private String createCurrentDate() {
+		System.out.println(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+	return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+}
 
-@Override
-public void add(Admin admin) {
-	try {
-		File file = new File(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV);
-		@SuppressWarnings("resource")
-		BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
-		String message = admin.toString();
-		System.out.println(message);
-		writer.write(message);
-		writer.newLine();
-		writer.flush();
-	}catch(Exception e){
-		System.out.println("파일 입력시 에러생김");
+	private String createEemployNumber() {
+	
+	String startNum="";
+	for (int i=0;i<4;i++) {
+		startNum +=(int)Math.random()*10;
+	}
+	return startNum ;
+		}
+		 
+
+
+	@Override
+	public List<Admin> list() {
+	
+		return adminDao.selectAll();
+	}
+
+	
+
+
+	@Override
+	public Admin findOne(String employNumber) {
+		
+		return adminDao.selectOne(employNumber);
+	}
+
+	@Override
+	public void modify(Admin admin) {
+		adminDao.update(admin);
+		
+	}
+
+	@Override
+	public void remove(Admin admin) {
+		adminDao.delete(admin);
 	}
 }
 
-@Override
-public List<Admin> list() {
-	List<Admin> adminlist = new ArrayList<>();
-	List<String> list = new ArrayList<>();
-	try {
-		File file = new File(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV);
-		BufferedReader reader = new BufferedReader(new FileReader(file));
-		String message = "";
-		while((message = reader.readLine()) != null) {
-			list.add(message);
-			}
-		reader.close();
-	}catch (Exception e){
-		System.out.println("파일 읽기에서 에러 생김");
-	}
-
-	Admin a = null;
-	for(int i=0;i<list.size();i++) {
-		a= new Admin();
-		String [] arr = list.get(i).split(",");
-		a.setEmployNumber(arr[0]);
-		a.setName(arr[1]);
-		a.setPasswd(arr[2]);
-		a.setPosition(arr[3]);
-		a.setProfile(arr[4]);
-		a.setEmail(arr[5]);
-		a.setPhoneNumber(arr[6]);
-		a.setRegisterDate(arr[7]);
-		adminlist.add(a);
-	}
-
-	return adminlist;
-}
-
-@Override
-public int count() {
-
-	return 0;
-}
-
-@Override
-public void register(Admin admin) {
-	// TODO Auto-generated method stub
-	
-}
-
-@Override
-public Admin findOne(String employNumber) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public void modify(Admin admin) {
-	// TODO Auto-generated method stub
-	
-}
-
-@Override
-public void remove(Admin admin) {
-	// TODO Auto-generated method stub
-	
-}
-}
+/*NumberFormat numFormat = new();
+	Date number = new Date();
+	System.out.println(numFormat.format(number));*/

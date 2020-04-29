@@ -14,38 +14,40 @@ import java.util.Map.Entry;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hw.web.util.Data; 
 @Service
 public class UserServiceImpl implements UserService{
-
-	@Override
-	public void index() {
-		// TODO Auto-generated method stub
-		
+  @Autowired UserDao userDao;
+	
+  @Override
+	public void index(User user) {
+	  
+		userDao.insert(user);
 	}
 
 	@Override
 	public List<User> list() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return userDao.selectAll();
 	}
 
 	@Override
 	public User findOne(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userDao.selectOne(userid);
 	}
 
 	@Override
 	public void modify(User user) {
-		// TODO Auto-generated method stub
+		userDao.update(user);
 		
 	}
 
 	@Override
 	public void remove(User user) {
-		// TODO Auto-generated method stub
+		userDao.delete(user);
 		
 	}
 
