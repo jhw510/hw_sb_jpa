@@ -2,7 +2,7 @@ package com.hw.web.util;
 
 public enum Messenger {
 	 SUCCESS,FAIL ,FILE_INSERT_ERROR,FILE_SELECT_ERROR;
-	/*@Override
+	@Override
 	public String toString() {
 		String returnValue ="";
 		switch (this) {
@@ -12,5 +12,5 @@ public enum Messenger {
 		
 		}
 		return returnValue;
-	}*/
+	}
 }
