@@ -33,14 +33,11 @@ html, body {
                 <img src="http://www.cdc.go.kr/cdc/img/main/h1_logo.png">
             </td>
             <td colspan="2">
-                <input id="search" style="width:500px;height:50px;float:left;margin-left:50px" type="text">
-                <input id="search_button"
-                       style="width:150px;height:50px;float:left;margin-left:50px;background-color: #80003E; color: white"
-                       type="button" value="검색"> <br>
+              <h1>관리자 등록</h1>
             </td>
             <td>
-                <a id="login_a" style="cursor:pointer;text-decoration: underline">회원가입</a>
-                <a id="join_a" style="cursor:pointer;text-decoration: underline">로그인</a>
+                <a id="login_a" style="cursor:pointer;text-decoration: underline">로그인</a>
+                <a id="join_a" style="cursor:pointer;text-decoration: underline">회원가입</a>
                 <a id="register_a" style="cursor:pointer;text-decoration: underline">관리자 등록</a>
                 <a id="access_a" style="cursor:pointer;text-decoration: underline">관리자 접속</a>
             </td>
@@ -95,7 +92,8 @@ html, body {
          e.preventDefault()
          location.href = "admin/register.html"
   	   })
-		$('#register_t').css({width : '50%', height : '600px'}).addClass('border_black center')
+		$('#register_a').css({color:'blue',cursor:'pointer','text-decoretion':'none'})
+  	   $('#register_t').css({width : '50%', height : '600px'}).addClass('border_black center')
 		$('#register_t tr').addClass('border_black')
 		$('#register_t tr td').addClass('border_black')
 		$('#text_index').css({width: '20%'})
