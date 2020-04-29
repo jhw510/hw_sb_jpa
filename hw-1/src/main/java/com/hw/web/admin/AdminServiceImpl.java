@@ -19,7 +19,7 @@ public class AdminServiceImpl implements AdminService{
 @Override
 public void add(Admin admin) {
 	try {
-		File file = new File(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV.toString());
+		File file = new File(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV);
 		@SuppressWarnings("resource")
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
 		String message = admin.toString();
@@ -37,7 +37,7 @@ public List<Admin> list() {
 	List<Admin> adminlist = new ArrayList<>();
 	List<String> list = new ArrayList<>();
 	try {
-		File file = new File(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV.toString());
+		File file = new File(Data.ADMIN_PATH.toString()+Data.LIST+Data.CSV);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		String message = "";
 		while((message = reader.readLine()) != null) {
@@ -64,5 +64,35 @@ public List<Admin> list() {
 	}
 
 	return adminlist;
+}
+
+@Override
+public int count() {
+
+	return 0;
+}
+
+@Override
+public void register(Admin admin) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public Admin findOne(String employNumber) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public void modify(Admin admin) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void remove(Admin admin) {
+	// TODO Auto-generated method stub
+	
 }
 }

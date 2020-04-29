@@ -75,7 +75,7 @@ html, body {
 		</tr>
 		<tr>
 		<td colspan="3">
-		<input id="register_b" type="button" value="register" style="width:300px;height:50px;left:auto;margein-left:auto">
+		<input id="admin_update" type="button" value="register" style="width:300px;height:50px;left:auto;margein-left:auto">
 		<input id="cancel_b" type="button" value="cancel" style="width:300px;height:50px;left:auto;margein-left:auto"></td>
 		</tr>
 	</table>
@@ -97,10 +97,10 @@ html, body {
 		$('#register_t tr td').addClass('border_black')
 		$('#text_index').css({width: '20%'})
 		$('#text_input').css({width: '40%'}).addClass('border_black')
-		$('#register_b').click(e =>{
+		$('#admin_update').click(e =>{
 			e.preventDefault()
 			$.ajax({
-			url: '/admins/',
+			url: '/admins/'+'1234',
 			type: 'post',
 			data: JSON.stringify(
 				{employNumber:$('#employNumber').val(),
@@ -113,7 +113,7 @@ html, body {
 					success: d => {
 					if(d === 'SUCCESS'){
 						alert('등록성공!!!!!!!!')
-						location.href="../index.html"
+						location.href="access.html"
 					}else{
 			
 			}

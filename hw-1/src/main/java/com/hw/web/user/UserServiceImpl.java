@@ -20,90 +20,35 @@ import com.hw.web.util.Data;
 public class UserServiceImpl implements UserService{
 
 	@Override
-	public void add(User user) {
-		try {
-			File file = new File(Data.USER_PATH.toString()+Data.LIST+Data.CSV.toString());
-			@SuppressWarnings("resource")
-			BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-					String message = user.toString();
-					System.out.println(message);
-					writer.write(message);
-					writer.newLine();
-					writer.flush();
-		} catch(Exception e) {
-			System.out.println("파일 입력 시 에러 발생");
-		}
+	public void index() {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public int count() {
-		return 0;
-	}
-
-	@Override
-	public User login(User user) {
-		User returnUser = null;
-		
-		return returnUser;
-	}
-
-	@Override
-	public User detail(String userid) {
-		
+	public List<User> list() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean update(User user) {
-		return true;
+	public User findOne(String userid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public boolean remove(String userid) {
-		return true;
+	public void modify(User user) {
+		// TODO Auto-generated method stub
+		
 	}
+
 	@Override
-	public List<User> list() {
-		List<User> userlist = new ArrayList<>();
-		List<String> list = new ArrayList<>();
-		try {
-			File file = new File(Data.USER_PATH.toString()+Data.LIST+Data.CSV.toString());
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String message = "";
-			while((message = reader.readLine()) != null) {
-				list.add(message); 
-			}
-			reader.close();
-		} catch(Exception e) {
-			System.out.println("파일 읽기에서 에러 발생");
-		}
-		User u = null;
-		for(int i =0;i < list.size(); i++) {
-			u = new User();
-			String[] arr = list.get(i).split(",");
-			u.setUserid(arr[0]);
-			u.setPasswd(arr[1]);
-			u.setName(arr[2]);
-			u.setSsn(arr[3]);
-			u.setAddr(arr[4]);
-			userlist.add(u);
-		}
-		return userlist;
+	public void remove(User user) {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	@Override
-	public boolean idSearch(String userid) {
-		boolean ok = true;
-		List<User> list = list();
-		for(int i=0; i<list.size(); i++) {
-			if(userid.equals(list.get(i).getUserid())) {
-				ok = false;
-				break;
-			}
-		}
-		return ok;
-	}
+
 
 
 }

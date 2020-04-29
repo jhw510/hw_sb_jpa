@@ -18,47 +18,36 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hw.web.util.Messenger;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 	@Autowired UserService userService;
-	@PostMapping("/join")
-	public Messenger join(@RequestBody User user) {
-		int count = userService.count();
-		userService.add(user);
-		return (userService.count() == count + 1) ? Messenger.SUCCESS : Messenger.FAIL;
+	
+	@PostMapping("")
+	public Messenger post(@RequestBody User user) {
+		userService.index();
+		return Messenger.SUCCESS;
 	}
-	@GetMapping("/list")
+	@GetMapping("")
 	public List<User> list(){
 		return userService.list();
+		
 	}
-	
-	@PostMapping("/login")
-	public Map<String,Object> login(@RequestBody User user) {
-		Map<String,Object> returnMap = new HashMap<>();
-		User loginedUser = userService.login(user);
-		if(loginedUser != null) {
-			returnMap.put("user", loginedUser);
-			returnMap.put("messenger", Messenger.SUCCESS);
-		}else {
-			returnMap.put("messenger", Messenger.FAIL);
-		}
-		return returnMap;
-	}
-	@GetMapping("/detail/{userid}")
+	@GetMapping("/{userid}")
 	public User detail(@PathVariable String userid) {
-		return userService.detail(userid);
+		return userService.findOne(userid);
 	}
-	@PutMapping("/update")
-	public Messenger update(@RequestBody User user) {
-		System.out.println("update 정보 ::: "+user);
-		return (userService.update(user)) ? Messenger.SUCCESS: Messenger.FAIL;
+	@PutMapping("/{userid}")
+	public Messenger put(@RequestBody User user) {
+		userService.modify(user);
+		return Messenger.SUCCESS;
 	}
-	@DeleteMapping("/remove/{userid}")
-	public Messenger remove(@PathVariable String userid) {
-		System.out.println("delete 정보 ::: "+userid);
-		return (userService.remove(userid)) ? Messenger.SUCCESS: Messenger.FAIL;
+	@DeleteMapping("/{userid}")
+	public Messenger delete(@RequestBody User user) {
+		userService.remove(user);
+		return Messenger.SUCCESS;
 	}
-	
+
 }
+
 
 

@@ -75,7 +75,7 @@ html, body {
 		</tr>
 		<tr>
 		<td colspan="3">
-		<input id="register_b" type="button" value="register" style="width:300px;height:50px;left:auto;margein-left:auto">
+		<input id="detail" type="button" value="register" style="width:300px;height:50px;left:auto;margein-left:auto">
 		<input id="cancel_b" type="button" value="cancel" style="width:300px;height:50px;left:auto;margein-left:auto"></td>
 		</tr>
 	</table>
@@ -97,32 +97,11 @@ html, body {
 		$('#register_t tr td').addClass('border_black')
 		$('#text_index').css({width: '20%'})
 		$('#text_input').css({width: '40%'}).addClass('border_black')
-		$('#register_b').click(e =>{
-			e.preventDefault()
-			$.ajax({
-			url: '/admins/',
-			type: 'post',
-			data: JSON.stringify(
-				{employNumber:$('#employNumber').val(),
-					password: $('#password').val(),
-					position: $('#position').val(),
-					email: $('#email').val(),
-					phoneNumber: $('#phoneNumber').val()}),
-		 			dataType: 'json',
-					contentType: 'application/json',
-					success: d => {
-					if(d === 'SUCCESS'){
-						alert('등록성공!!!!!!!!')
-						location.href="../index.html"
-					}else{
-			
-			}
-		},
-		error: (request,status,error)=>{
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
-		}
 		
-	})
+		$.getJSON('/admin/'+'1234', d =>{
+			
 		})
+		
+	
 	</script>
 </body>
