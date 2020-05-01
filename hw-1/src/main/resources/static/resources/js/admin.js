@@ -1,13 +1,15 @@
 "use strict"	
 var admin = admin || {}
 admin = (()=> {
-	let init = ( )=> {
+	let init = ()=> {
 		alert('어드민1')
 		onCreate()
-	}let onCreate = ()=> {
+	}
+	let onCreate = ()=> {
 		alert('어드민2')
 		setContentView()
-	}let	setContentView = () => {
+	}
+	let	setContentView = () => {
 			alert('어드민3')
 		
 	}
