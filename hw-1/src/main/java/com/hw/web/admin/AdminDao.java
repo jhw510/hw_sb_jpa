@@ -2,6 +2,8 @@ package com.hw.web.admin;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+@Component
 public interface AdminDao {
 
 	public List<Admin> selectAll();

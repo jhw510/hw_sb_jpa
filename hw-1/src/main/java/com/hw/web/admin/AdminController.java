@@ -35,6 +35,7 @@ public class AdminController {
 	}
 	@GetMapping("/{employNumber}")
 	public Admin detail(@PathVariable String employNumber) {
+		
 		return adminService.findOne(employNumber);
 		
 	}

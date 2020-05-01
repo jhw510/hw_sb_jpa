@@ -1,7 +1,11 @@
 package com.hw.web.admin;
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+@Component
 @Getter@Setter
 public class Admin {
 
