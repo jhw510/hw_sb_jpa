@@ -17,35 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hw.web.util.Messenger;
 
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
+	
 	@Autowired UserService userService;
 	
-	@PostMapping("")
-	public Messenger post(@RequestBody User user) {
-		userService.index(user);
-		return Messenger.SUCCESS;
-	}
 	@GetMapping("")
 	public List<User> list(){
-		return userService.list();
-		
+		return userService.findAll();
 	}
-	@GetMapping("/{userid}")
-	public User detail(@PathVariable String userid) {
-		return userService.findOne(userid);
-	}
-	@PutMapping("/{userid}")
-	public Messenger put(@RequestBody User user) {
-		userService.modify(user);
-		return Messenger.SUCCESS;
-	}
-	@DeleteMapping("/{userid}")
-	public Messenger delete(@RequestBody User user) {
-		userService.remove(user);
-		return Messenger.SUCCESS;
-	}
+	
+	
+	
 
 }
 

@@ -1,17 +1,57 @@
-"use strict"	
+  
+"use strict"
+
 var admin = admin || {}
-admin = (()=> {
-	let init = ()=> {
-		alert('어드민1')
+
+admin = (() => {
+	let init = () => {
 		onCreate()
 	}
-	let onCreate = ()=> {
-		alert('어드민2')
+	let onCreate = () => {
 		setContentView()
+		$.getJSON('/users', d => {
+			$('#total_count').text('총회원수  : '+d.length)
+			$.each(d, (i, j) => {
+				$(`<tr>
+                        	<td>
+                                <span>${i+1}</span>
+                            </td>
+                            <td>
+                                <span>${j.userid}</span>
+                            </td>
+                            <td>
+                             <span id="user_`+(i+1)+`"></span>
+                            </td>
+                             <td>
+                                <span>${j.ssn}</span>
+                            </td>
+                           <td>
+                                <span>${j.email}</span>
+                            </td>
+                            <td>
+                                <span>${j.phoneNumber}</span>
+                            </td>
+                            <td>
+                                <span>${j.registerDate}</span>
+                            </td>
+                            
+                        </tr>`).appendTo('#userData')
+                        
+                        $(`<a>${j.name}</a>`)
+                        .css({cursor: 'pointer',color: 'blue'})
+                        .appendTo("#user_"+(i+1))
+                        .click(e => {
+                        	alert(`${j.userid}`)
+                        })
+                        
+			}) // each
+		}) // getJSON
 	}
-	let	setContentView = () => {
-			alert('어드민3')
+	let setContentView = () => {
+		$('#userData tr').first().css({'background-color':'#6799FF'})
 		
-	}
-	return {init}
-})()
+		
+		}
+		return {init}
+		
+	})()

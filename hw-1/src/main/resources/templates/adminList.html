@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>관리자 페이지</title>
+    <title>관리자목록 페이지</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/css/global.css" />
     <script type="text/javascript" src="/resources/js/user.js"></script>
@@ -104,7 +104,7 @@
         <tr>
             <td style="border: 3px solid black; width: 20%;margin-top: 200px">
             	<div >
-            		<h3 id="total_count" style="margin-bottom: 50px">총회원수 : </h3>
+            		<h3 id="total_count" style="margin-bottom: 50px">총관리자수 : </h3>
             		<div style="margin-bottom: 50px">이름 조회 : <input type="text" /></div>
             		<ul id="side_menu">
 						  <li><a class="active" href="#userList">사용자 목록</a></li>
@@ -148,10 +148,8 @@
         </tr>
     </table>
  <script>
- admin.init()
- $('#adminList').click(e=>{
-	 adminList.init()
- })
+ adminList.init()
+
  
      
  </script>

@@ -17,40 +17,16 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hw.web.util.Data; 
-@Service
-public class UserServiceImpl implements UserService{
-  @Autowired UserDao userDao;
-	
-  @Override
-	public void index(User user) {
-	  
-		userDao.insert(user);
-	}
+  @Service
+  public class UserServiceImpl implements UserService{
 
-	@Override
-	public List<User> list() {
-	
-		return userDao.selectAll();
-	}
+  		@Autowired UserDao userDao;
 
-	@Override
-	public User findOne(String userid) {
-		
-		return userDao.selectOne(userid);
-	}
-
-	@Override
-	public void modify(User user) {
-		userDao.update(user);
-		
-	}
-
-	@Override
-	public void remove(User user) {
-		userDao.delete(user);
-		
-	}
+  		@Override
+  		public List<User> findAll() {
+  			
+  			return userDao.selectAll();
+  		}
 
 
-
-}
+  }
