@@ -28,5 +28,11 @@ import com.hw.web.util.Data;
   			return userDao.selectAll();
   		}
 
+		@Override
+		public User findOne(String userid) {
+		
+			return userDao.selectOne(userid);
+		}
+
 
   }

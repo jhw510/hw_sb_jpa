@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao{
 		List<User> list = new ArrayList<>();
 		List<String> temp = new ArrayList<>();
 		try {
-			File file = new File(Data.ADMIN_PATH + "user_list.csv");
+			File file = new File(Data.USER_LIST.toString());
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String message = "";
 			while ((message = reader.readLine())!=null) {
@@ -35,9 +35,9 @@ public class UserDaoImpl implements UserDao{
 			
 		}
 		User u = null;
-		for(int i=0;i<temp.size();i++) {
+		for(String s : temp) {
 			u= new User();
-			String[] arr = temp.get(i).split(",");
+			String[] arr = s.split(",");
 			
 			/*userid,passwd,name,ssn, addr,profile, email, phoneNumber, registerDate*/
 			u.setUserid(arr[0]);
@@ -53,6 +53,18 @@ public class UserDaoImpl implements UserDao{
 		}
 	
 		return list;
+	}
+
+	@Override
+	public User selectOne(String userid) {
+		List<User> list = selectAll();
+		User findUser = null;
+		for(User u:list)
+			if(userid.equals(u.getUserid())) {
+				findUser=u;
+				break;
+			}
+		return findUser;
 	}
 	
 

@@ -40,7 +40,7 @@ user = (()=>{
 		    	 $(`<input type="button" >`)
 		    	 .attr({value:"로그인"})
 		    	 .appendTo('#login_box')
-		    	 .click(e=>{
+		    	 .click(e =>{
 		    		 e.preventDefault()
 		    		 location.href = "/admin"
 		    		/*$.ajax({

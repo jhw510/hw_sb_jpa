@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface UserDao {
 
-	List<User> selectAll();
+	public List<User> selectAll();
+
+	public User selectOne(String userid);
 
 }

@@ -28,7 +28,10 @@ public class UserController {
 	public List<User> list(){
 		return userService.findAll();
 	}
-	
+	@GetMapping("/{userid}")	
+	public User detail(@PathVariable String userid) {
+		return userService.findOne(userid);
+	}
 	
 	
 
