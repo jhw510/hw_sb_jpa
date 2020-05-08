@@ -12,7 +12,8 @@ public class Lost {
 	private String lostId,lostName,lostKind,lostAddr,lostDate;
 	@Override
 	public String toString() {
-		return String.format("%s,%s,%s,%s,%s", lostId,lostName,lostKind,lostAddr,lostDate);
+		return String.format("%s,%s,%s,%s,%s", lostId,lostName,
+				lostKind,lostAddr,lostDate);
 	}
 	
 	
